@@ -1,4 +1,78 @@
+<style>
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 900px;
+        text-align: center;
+        margin-top: 140px;
+        font-family: Helvetica, Arial, sans-serif
+    }
+
+    .link {
+        text-decoration: underline;
+        color: rgb(41, 41, 194);
+        cursor: pointer;
+    }
+    .link:hover {
+        color:  rgb(23, 23, 112);
+    }
+    .clues {
+        margin-bottom: 30px;
+    }
+</style>
 
 <body>
-    <h1>Where did this all become real?</h1> 
+    <div id="container" class="container">
+        <div class="clues">
+            <h1 id="clue">You're looking for a beginning</h1> 
+            <a id="next" class="link">Please be less obtuse </a>
+        </div>
+        <div id="commentary">
+            
+        </div>
+    </div>
 </body>
+
+<script>
+    var step = 0;
+    var clues = [
+        "You're looking for a beginning",
+        "The beginning of crossroads collective",
+        "Where did it actually become real?",
+        "It was 10am on a Friday Morning",
+        "It involved coffee",
+        "Where did we get our first signed contract?",
+        "It is near the Munk School",
+        "L'Espresso Bar Mercurio"
+    ]
+
+    document.getElementById("next").addEventListener("click", function(e) {
+        step += 1;
+        document.getElementById("clue").innerHTML = clues[step];
+        var commentaryEl = document.getElementById("commentary");
+        if (step === 1) {
+            var x = document.createElement("IMG");
+            x.src = "logo.png";
+            x.height = 50;
+            x.width = 50;
+            commentaryEl.appendChild(x);
+            var y = document.createElement("p");
+            y.innerHTML = "dope logo btw ^";
+            commentaryEl.appendChild(y);
+        } else {
+            while (commentaryEl.firstChild) {
+                commentaryEl.removeChild(commentaryEl.firstChild);
+            }
+        }
+        if (step === (clues.length - 2)) {
+            document.getElementById("next").innerHTML = "Give me the answer";
+        }
+        if (step === (clues.length - 1)) {
+            var el = document.getElementById("next");
+            el.parentNode.removeChild(el);
+        }
+    });
+
+    console.log("hi people who bothered to look in here.");
+    console.log("here's a bonus clue: we talked about saving a loonie here");
+</script>
